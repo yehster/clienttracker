@@ -17,7 +17,7 @@ import org.hibernate.Session;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cli")
+@RequestMapping("/client")
 public class clientsController {
 
 
