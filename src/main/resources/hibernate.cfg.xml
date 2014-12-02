@@ -24,6 +24,10 @@
         <mapping class="com.lt.clienttracker.client"/>
         <mapping class="com.lt.clienttracker.assessment"/>
         <mapping class="com.lt.clienttracker.diagnosis"/>
+        <mapping class="com.lt.clienttracker.ACE"/>
+        <mapping class="com.lt.clienttracker.SASSI"/>
+        
+
     </session-factory>
     
 </hibernate-configuration>

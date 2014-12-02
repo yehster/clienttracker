@@ -7,11 +7,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <script type="text/html" id="clientlist">
-    <h1>data</h1>
     <table>
-        <tbody data-bind="foreach: $data">
+        <thead>
             <tr>
-                <td data-bind="text: id" />
+                <th>ID</th>
+                <th>Years</th>
+                <th>Months</th>
+                <th>LGBTQ</th>
+                <th>Admission</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: $data">
+            <tr data-bind="click: editClient">
+                <td data-bind="text: id"></td>
+                <td data-bind="text: admAgeYears"></td>
+                <td data-bind="text: admAgeMonths"></td>
+                <td data-bind="text: lgbtq"></td>
+                <td ><span data-bind="text: admissionMonth"></span>/<span data-bind="text: admissionYear"></span></td>
             </tr>
         </tbody>
     </table>

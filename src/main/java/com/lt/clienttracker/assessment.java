@@ -19,6 +19,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  *
@@ -71,6 +72,18 @@ public class assessment implements java.io.Serializable  {
     }
     
     
+    @JsonProperty
+    public String AssessmentName()
+    {
+        return "assessment";
+    }
+
+    @JsonProperty
+    public String DisplayInfo()
+    {
+        return "assessment";
+    }
+
     protected client client;
     
     @JsonBackReference

@@ -58,4 +58,17 @@ public class diagnosis extends assessment {
     {
         this.code = code;
     }    
+    
+    @Override
+    public String AssessmentName()
+    {
+        return "diagnosis";
+    }    
+    
+    @Override
+    public String DisplayInfo()
+    {
+        return this.Description+":"+this.code+":"+this.code_type;
+    }
+    
 }

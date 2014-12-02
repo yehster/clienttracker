@@ -31,16 +31,36 @@ public class testmain {
             obj.setAdmissionAge(10, 2);
             obj.setAdmissionYear(2014);
             obj.setAdmissionMonth(11);
-            obj.setLBGTQ("T");
+            obj.setLGBTQ("T");
 
             
+            client cur=events.get(0);
 //            sess.save(obj);
             diagnosis test=new diagnosis();
-            events.get(2).getAssessments().add(test);
             test.setDescription("This is a code!");
-            test.setClient(events.get(2));
+            test.setCode("123.40");
+            test.setCodeType("DSM-IV");
+            test.setMonth(12);
+            test.setYear(2014);
+            test.setClient(cur);
+            sess.save(test);
+            
+            SASSI sassi=new SASSI();
+            sassi.setRiskLow();
+            sassi.setClient(cur);
+            sassi.setMonth(12);
+            sassi.setYear(2014);
+            sess.save(sassi);
+
+            ACE ace=new ACE();
+            ace.setScore(1);
+            ace.setClient(cur);
+            ace.setMonth(12);
+            ace.setYear(2014);
+            sess.save(ace);
+            
 //            sess.save(events.get(0));
-            sess.save(events.get(2));
+            sess.save(cur);
             sess.getTransaction().commit();
             sess.close();
             

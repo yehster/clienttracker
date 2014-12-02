@@ -30,4 +30,51 @@ public class clientsController {
 
         return events;
     }
+    
+    @RequestMapping("/new.do")
+    public client newClient(@RequestParam(value="id") String id,
+                            @RequestParam(value="agem") int agem,
+                            @RequestParam(value="agey") int agey,
+                            @RequestParam(value="admy") int admy,
+                            @RequestParam(value="admm") int admm,
+                            @RequestParam(value="lgbtq") String lgbtq
+                            )
+    {
+        
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+        sess.beginTransaction();
+        client retval= new client();
+        retval.setId(id);
+        retval.setAdmissionAge(agey, agem);
+        retval.setAdmissionYear(admy);
+        retval.setAdmissionMonth(admm);
+        retval.setLGBTQ(lgbtq);
+        sess.save(retval);
+        sess.getTransaction().commit();
+        return retval;
+    }
+    @RequestMapping("/edit.do")
+    public client editClient(@RequestParam(value="id") String id,
+                            @RequestParam(value="agem") int agem,
+                            @RequestParam(value="agey") int agey,
+                            @RequestParam(value="admy") int admy,
+                            @RequestParam(value="admm") int admm,
+                            @RequestParam(value="lgbtq") String lgbtq
+                            )
+    {
+        
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+        sess.beginTransaction();
+        client retval= (client)sess.get(client.class, id);
+        retval.setAdmissionAge(agey, agem);
+        retval.setAdmissionYear(admy);
+        retval.setAdmissionMonth(admm);
+        retval.setLGBTQ(lgbtq);
+        sess.save(retval);
+        sess.getTransaction().commit();
+        return retval;
+    }
+
 }

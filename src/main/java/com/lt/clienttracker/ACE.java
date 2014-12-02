@@ -24,4 +24,26 @@ public class ACE extends assessment implements java.io.Serializable {
 
     /* 0-10 based on inventory */
     protected int score;
+    
+    @Column(name="score")
+    public int getScore()
+    {
+        return this.score;
+    }
+    
+    public void setScore(int value)
+    {
+        this.score=value;
+    }
+    @Override
+    public String AssessmentName()
+    {
+        return "ACE";
+    }
+    
+    @Override
+    public String DisplayInfo()
+    {
+        return Integer.toString(this.score);
+    }    
 }

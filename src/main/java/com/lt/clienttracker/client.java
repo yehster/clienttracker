@@ -82,17 +82,16 @@ public class client implements java.io.Serializable {
         this.AdmissionMonth=AdmissionYear;
     }
 
-    protected String LBGTQ;
+    protected String LGBTQ;
 
-    @Column(name="LBGTQ")
-    public String getLBGTQ()
+    @Column(name="LGBTQ")
+    public String getLGBTQ()
     {
-        return this.LBGTQ;
+        return this.LGBTQ;
     }
-    
-    public void setLBGTQ(String LBGTQ)
+    public void setLGBTQ(String LGBTQ)
     {
-        this.LBGTQ=LBGTQ;
+        this.LGBTQ=LGBTQ;
     }
     
     @JsonManagedReference
@@ -111,7 +110,7 @@ public class client implements java.io.Serializable {
     @Override
     public String toString()
     {
-        return this.id + ":" + this.AdmissionAgeInMonths+":"+LBGTQ+":"+this.AdmissionYear;
+        return this.id + ":" + this.AdmissionAgeInMonths+":"+LGBTQ+":"+this.AdmissionYear;
     }
     
 }
