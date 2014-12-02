@@ -21,12 +21,13 @@ import java.util.List;
 public class clientsController {
 
 
-    @RequestMapping("/get.do")
+    @RequestMapping("/list.do")
     public List<client> getClients(@RequestParam(value="name", defaultValue="World") String name) {
         
         SessionFactory sessFact= HibernateManager.getSessionFactory();
         Session sess=sessFact.openSession();
         List<client> events=sess.createQuery("from client").list();
+
         return events;
     }
 }

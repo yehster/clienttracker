@@ -54,6 +54,7 @@
     <beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
     </beans:bean> 
         
+    <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" cache-period="1"/>        
     <!--
     The index controller.
     -->
