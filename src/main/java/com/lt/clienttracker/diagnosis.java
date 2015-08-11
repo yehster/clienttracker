@@ -19,7 +19,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * @author yehster
  */
 @Entity  
-@Table(name="diagnoses")  
+@Table(name="diagnosis")  
 @PrimaryKeyJoinColumn(name="id")  
 public class diagnosis extends assessment {
     

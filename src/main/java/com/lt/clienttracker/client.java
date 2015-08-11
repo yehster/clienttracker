@@ -21,7 +21,7 @@ import java.util.Set;
  * @author yehster
  */
 @Entity
-@Table(name="clients")
+@Table(name="client")
 public class client implements java.io.Serializable {
     protected String id;
 

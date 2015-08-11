@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody data-bind="foreach: $data">
-            <tr>
+            <tr data-bind="click: editAssessment">
                 <td>
                     <span data-bind="text: month"></span>/<span data-bind="text:year"></span>
                 </td>

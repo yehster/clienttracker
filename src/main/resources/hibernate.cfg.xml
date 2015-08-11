@@ -6,7 +6,7 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://192.168.1.20:3307/ltracker</property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/ltracker</property>
         <property name="connection.username">root</property>
         <property name="connection.password">mydbpwd</property>
 
@@ -26,7 +26,7 @@
         <mapping class="com.lt.clienttracker.diagnosis"/>
         <mapping class="com.lt.clienttracker.ACE"/>
         <mapping class="com.lt.clienttracker.SASSI"/>
-        
+       
 
     </session-factory>
     

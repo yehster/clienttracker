@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author yehster
  */
 @Entity
-@Table(name="assessments")
+@Table(name="assessment")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class assessment implements java.io.Serializable  {
     

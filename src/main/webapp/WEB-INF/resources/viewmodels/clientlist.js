@@ -43,8 +43,8 @@ function new_client(data,evt)
         id:ko.observable(""),
         admAgeMonths:ko.observable(0),
         admAgeYears:ko.observable(0),
-        admissionYear:ko.observable(2014),
-        admissionMonth:ko.observable(12),
+        admissionYear:ko.observable(2015),
+        admissionMonth:ko.observable(7),
         lgbtq:ko.observable("")
     };
     tracker_vm.editInfo.clientEdit(new_client);
@@ -100,12 +100,91 @@ function clientCancel(data,evt)
     retrieve_client_list();
     tracker_vm.editInfo.clientEdit(null);
 }
+
+
+function assessment(id,name,month,year)
+{
+    this.id=ko.observable(id);
+    this.month=ko.observable(month);
+    this.year=ko.observable(year);
+    this.name=name;
+    return this;
+}
+function assessmentOption(name,description,fields)
+{
+    this.name=name;
+    this.description=description;
+    this.fields=ko.observableArray(fields);
+    return this;
+}
+var assessmentTypes={};
+assessmentTypes["diagnosis"]= new assessmentOption("diagnosis","diagnosis",["CodeType","Code"]);
+assessmentTypes["ACE"]= new assessmentOption("ACE","ACE",["Score"]);
+assessmentTypes["SASSI"]=new assessmentOption("SASSI","SASSI",["Risk"]);
+
+
+assessmentTypesList=[];
+for(var propertyName in assessmentTypes)
+{
+
+    assessmentTypesList.push(assessmentTypes[propertyName]);
+}
+
 var tracker_vm = {
     clients: ko.observableArray(),
     editInfo: {
         clientEdit: ko.observable(),
-        editMode: ko.observable(false)
+        editMode: ko.observable(false),
+        assessmentOptions: ko.observableArray(assessmentTypesList),
+        assessmentEditMode: ko.observable(false),
+        assessmentEditType: ko.observable(),
+        assessmentEditData: ko.observable(),
         
     },
     assessments: ko.observableArray()
+
 };
+
+
+function editAssessment(data)
+{
+
+    $.getJSON(assessment_get+data.AssessmentName+".do",
+        {assessmentID: data.id },
+        function(assessment)
+        {
+            var assessmentData={};
+            for(var property in assessment)
+            {
+                assessmentData[property]=ko.observable(assessment[property]);
+            }
+             tracker_vm.editInfo.assessmentEditData(assessmentData);
+             tracker_vm.editInfo.assessmentEditType("assessmentEdit"+data.AssessmentName);
+
+
+            
+        }
+    );
+}
+
+function newAssessment(data)
+{   
+    var parameters={
+        clientID: tracker_vm.editInfo.clientEdit().id,
+        assessmentName: data.name
+    }
+        $.getJSON(assessment_new,parameters,
+        function(assessment)
+        {
+            tracker_vm.assessments.push(assessment);
+            editAssessment(assessment);
+        }
+    );     
+//    assessmentEditMode(true);
+    
+}
+
+function deleteAssessment(data)
+{
+    confirm("Delete entry?\n"+data.DisplayInfo());
+}

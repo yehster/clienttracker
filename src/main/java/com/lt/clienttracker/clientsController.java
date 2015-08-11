@@ -26,9 +26,9 @@ public class clientsController {
         
         SessionFactory sessFact= HibernateManager.getSessionFactory();
         Session sess=sessFact.openSession();
-        List<client> events=sess.createQuery("from client").list();
+        List<client> clients=sess.createQuery("from client").list();
 
-        return events;
+        return clients;
     }
     
     @RequestMapping("/new.do")

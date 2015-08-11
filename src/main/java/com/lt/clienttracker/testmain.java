@@ -24,7 +24,7 @@ public class testmain {
 
         try
         {
-            System.out.println(events.get(events.size()-1).toString());
+//            System.out.println(events.get(events.size()-1).toString());
             sess.beginTransaction();
             com.lt.clienttracker.client obj=new client();
             obj.setId("Kevin2");
@@ -34,18 +34,18 @@ public class testmain {
             obj.setLGBTQ("T");
 
             
-            client cur=events.get(0);
-//            sess.save(obj);
+//            client cur=events.get(0);
+            sess.save(obj);
             diagnosis test=new diagnosis();
             test.setDescription("This is a code!");
             test.setCode("123.40");
             test.setCodeType("DSM-IV");
             test.setMonth(12);
             test.setYear(2014);
-            test.setClient(cur);
+            test.setClient(obj);
             sess.save(test);
             
-            SASSI sassi=new SASSI();
+/*            SASSI sassi=new SASSI();
             sassi.setRiskLow();
             sassi.setClient(cur);
             sassi.setMonth(12);
@@ -60,7 +60,8 @@ public class testmain {
             sess.save(ace);
             
 //            sess.save(events.get(0));
-            sess.save(cur);
+*/
+//            sess.save(cur);
             sess.getTransaction().commit();
             sess.close();
             
