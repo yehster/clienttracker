@@ -5,6 +5,35 @@
  */
 
 ko_bound=false;
+function compare_assessment_order(a,b)
+{
+    var total_a=a.year*12 + a.month;
+    var total_b=b.year*12 + b.month;
+    if(total_a>total_b)
+    {
+        return 1;
+    }
+    if(total_a<total_b)
+    {
+        return -1;
+    }
+    if(total_a==total_b)
+    {
+        if(a.AssessmentName>b.AssessmentName)
+        {
+            return 1
+        }
+        if(a.AssessmentName==b.AssessmentName)
+        {
+            return 0
+        }
+        if(a.AssessmentName<b.AssessmentName)
+        {
+            return -1
+        }
+    }
+
+}
 function client_info(data)
 {
     this.id=ko.observable(data.id);
@@ -13,6 +42,7 @@ function client_info(data)
     this.admissionYear=ko.observable(data.admissionYear);
     this.admissionMonth=ko.observable(data.admissionMonth);
     this.lgbtq=ko.observable(data.lgbtq);
+    data.assessments.sort(compare_assessment_order);
     this.assessments=ko.observableArray(data.assessments);
     return this;
 }
@@ -88,11 +118,21 @@ function clientSave(data,evt)
     }
 }
 
+
 function editClient(data,evt)
 {
     tracker_vm.editInfo.editMode("edit");
-    tracker_vm.editInfo.clientEdit(data);
-    tracker_vm.assessments(data.assessments());
+    tracker_vm.editInfo.assessmentEditData(false);
+    tracker_vm.editInfo.assessmentEditType(false);
+    $.getJSON(client_get,
+    {
+        id:data.id()
+    },
+        function(client)
+        {
+            update_client_info(client);
+        });
+
 }
 
 function clientCancel(data,evt)
@@ -136,7 +176,6 @@ var tracker_vm = {
         clientEdit: ko.observable(),
         editMode: ko.observable(false),
         assessmentOptions: ko.observableArray(assessmentTypesList),
-        assessmentEditMode: ko.observable(false),
         assessmentEditType: ko.observable(),
         assessmentEditData: ko.observable(),
         
@@ -176,15 +215,67 @@ function newAssessment(data)
         $.getJSON(assessment_new,parameters,
         function(assessment)
         {
-            tracker_vm.assessments.push(assessment);
-            editAssessment(assessment);
+            $.getJSON(client_get,
+            {
+                id:tracker_vm.editInfo.clientEdit().id
+            },
+                function(client)
+                {
+                    update_client_info(client);
+                    editAssessment(assessment);
+                });
+
         }
     );     
-//    assessmentEditMode(true);
     
 }
 
+// Takes a JSON client representation and brings it into the view model
+function update_client_info(data)
+{
+    var client = new client_info(data);
+    tracker_vm.editInfo.clientEdit(client);
+    tracker_vm.assessments(client.assessments());
+
+}
 function deleteAssessment(data)
 {
-    confirm("Delete entry?\n"+data.DisplayInfo());
+    if(confirm("Delete entry?\n"+data.year() +"/" +data.month() + ":"+data.DisplayInfo()))
+    {
+        $.post(assessment_delete,{assessmentID: data.id()},function(result){
+                    $.getJSON(client_get,
+                        {
+                            id:tracker_vm.editInfo.clientEdit().id
+                        },
+                        function(client)
+                        {
+                            update_client_info(client);
+                        }
+                    );
+                }
+            );
+        
+    }
+}
+
+function saveAssessment(data)
+{
+    var assessment_json={};
+    for(var property in data)
+    {
+        assessment_json[property]=data[property]();
+    }
+    var post_url=assessment_update+data.AssessmentName()+".do";
+    $.post(post_url,assessment_json,
+    function(data){
+                        $.getJSON(client_get,
+                        {
+                            id:tracker_vm.editInfo.clientEdit().id
+                        },
+                        function(client)
+                        {
+                            update_client_info(client);
+                        }
+                );
+        });
 }

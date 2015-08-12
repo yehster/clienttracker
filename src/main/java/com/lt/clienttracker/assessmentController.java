@@ -32,14 +32,20 @@ public class assessmentController {
         if(assessmentName.equals("diagnosis"))
         {
             retval=new diagnosis();
+            diagnosis newDiagnosis =(diagnosis)retval;
+            newDiagnosis.setCodeType("DSM-IV");
         }
         else if(assessmentName.equals("ACE"))
         {
             retval=new ACE();
+            ACE newACE= (ACE)retval;
+            newACE.setScore(0);
         }
         else if(assessmentName.equals("SASSI"))
         {
             retval=new SASSI();
+            SASSI newSASSI=(SASSI)retval;
+            newSASSI.setRiskHigh();
         }
         else
         {
@@ -63,6 +69,37 @@ public class assessmentController {
         diagnosis retval= (diagnosis)sess.get(diagnosis.class, assessmentID);
         return retval;
     }
+    
+    @RequestMapping("updatediagnosis.do")
+    public String updatediagnosis(@RequestParam(value="id") String id,
+                                  @RequestParam(value="year") int year,
+                                  @RequestParam(value="month") int month,
+                                  @RequestParam(value="code")String code,
+                                  @RequestParam(value="codeType")String codeType,
+                                  @RequestParam(value="description")String description
+                                  )
+    {
+
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        sess.beginTransaction();
+        diagnosis updatedAssessment= (diagnosis)sess.get(diagnosis.class, id);
+        
+        updatedAssessment.setYear(year);
+        updatedAssessment.setMonth(month);
+        
+        // Class specific fields
+        updatedAssessment.setCode(code);
+        updatedAssessment.setCodeType(codeType);
+        updatedAssessment.setDescription(description);
+        
+        
+        sess.save(updatedAssessment);
+        sess.getTransaction().commit();
+        return id;
+    }
+    
 
     @RequestMapping("getACE.do")
     public ACE getACE(@RequestParam(value="assessmentID") String assessmentID)
@@ -74,7 +111,31 @@ public class assessmentController {
         ACE retval= (ACE)sess.get(ACE.class, assessmentID);
         return retval;
     }
-    
+
+    @RequestMapping("updateACE.do")
+    public String updateACE(@RequestParam(value="id") String id,
+                                  @RequestParam(value="year") int year,
+                                  @RequestParam(value="month") int month,
+                                  @RequestParam(value="score") int score
+                                  )
+    {
+
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        sess.beginTransaction();
+        ACE updatedAssessment= (ACE)sess.get(ACE.class, id);
+        
+        updatedAssessment.setYear(year);
+        updatedAssessment.setMonth(month);
+        
+        // Class specific fields
+        updatedAssessment.setScore(score);        
+        
+        sess.save(updatedAssessment);
+        sess.getTransaction().commit();
+        return id;
+    }    
     
     @RequestMapping("getSASSI.do")
     public SASSI getSASSI(@RequestParam(value="assessmentID") String assessmentID)
@@ -85,5 +146,42 @@ public class assessmentController {
 
         SASSI retval= (SASSI)sess.get(SASSI.class, assessmentID);
         return retval;
-    }    
+    }
+    
+    @RequestMapping("updateSASSI.do")
+    public String updateSASSI(@RequestParam(value="id") String id,
+                                  @RequestParam(value="year") int year,
+                                  @RequestParam(value="month") int month,
+                                  @RequestParam(value="risk") String risk
+                                  )
+    {
+
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        sess.beginTransaction();
+        SASSI updatedAssessment= (SASSI)sess.get(SASSI.class, id);
+        
+        updatedAssessment.setYear(year);
+        updatedAssessment.setMonth(month);
+        
+        // Class specific fields
+        updatedAssessment.setRisk(risk);        
+        
+        sess.save(updatedAssessment);
+        sess.getTransaction().commit();
+        return id;
+    }        
+    
+    @RequestMapping("delete.do")
+    public void deleteAssessment(@RequestParam(value="assessmentID") String assessmentID)
+    {
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+        sess.beginTransaction();
+        
+        assessment toDelete= (assessment)sess.get(assessment.class, assessmentID);
+        sess.delete(toDelete);
+        sess.getTransaction().commit();
+    }
 }

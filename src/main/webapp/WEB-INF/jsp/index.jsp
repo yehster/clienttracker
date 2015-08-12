@@ -12,9 +12,12 @@
 <script type="text/javascript">
     var client_ajax="${pageContext.request.contextPath}/client/list.do";
     var client_new="${pageContext.request.contextPath}/client/new.do";
+    var client_get="${pageContext.request.contextPath}/client/get.do";
     var client_edit="${pageContext.request.contextPath}/client/edit.do";
     var assessment_new="${pageContext.request.contextPath}/assessment/new.do";
     var assessment_get="${pageContext.request.contextPath}/assessment/get";
+    var assessment_delete="${pageContext.request.contextPath}/assessment/delete.do";
+    var assessment_update="${pageContext.request.contextPath}/assessment/update";
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/viewmodels/clientlist.js"></script>
 

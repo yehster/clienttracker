@@ -18,8 +18,10 @@
         <input type="text" data-bind="value: month"></input>
         <input type="text" data-bind="value: year"></input>
     </div>
-    <div data-bind="template: {name:assessmentEditType, data: assessmentEditData }"></div>
+    <div data-bind="template: {name:assessmentEditType(), data: assessmentEditData }"></div>
     <div data-bind="with: assessmentEditData">
+        
+        <button data-bind="click: saveAssessment">Save</button>
         <button data-bind="click: deleteAssessment">Delete</button>
     </div>
     <!-- /ko -->
@@ -37,6 +39,7 @@
 <script type="text/html" id="assessmentEditACE">
     <!-- ko if: AssessmentName()=="ACE" -->
         <div>ACE</div>
+        <input type="text" data-bind="value: score"></input>
     <!-- /ko -->
 </script>
 

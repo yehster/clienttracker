@@ -54,6 +54,17 @@ public class clientsController {
         sess.getTransaction().commit();
         return retval;
     }
+    
+    @RequestMapping("/get.do")
+    public client getClient(@RequestParam(value="id") String id)
+    {
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        client retval= (client)sess.get(client.class, id);
+        
+        return retval;
+    }
     @RequestMapping("/edit.do")
     public client editClient(@RequestParam(value="id") String id,
                             @RequestParam(value="agem") int agem,
