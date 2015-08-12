@@ -78,3 +78,57 @@
         <!-- /ko -->
     <!-- /ko -->
 </script>
+
+
+<script type="text/html" id="assessmentEditBeck">
+    <!-- ko if: $data -->
+
+        <!-- ko if: AssessmentName()=="Beck" -->
+            <div>Beck</div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>BSCI-Y</td>
+                        <td>
+                            <input type="text" data-bind="value:bsci_Y"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>BAI-Y</td>
+                        <td>
+                            <input type="text" data-bind="value:bai_Y"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>BDI-Y</td>
+                        <td>
+                            <input type="text" data-bind="value:bdi_Y"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>BANI-Y</td>
+                        <td>
+                            <input type="text" data-bind="value:bani_Y"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>BDBI-Y</td>
+                        <td>
+                            <input type="text" data-bind="value:bdbi_Y"></input>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        <!-- /ko -->
+    
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="assessmentEditdischarge">
+    <!-- ko if: $data -->
+
+        <!-- ko if: AssessmentName()=="Beck" -->
+            <div>Discharge</div>
+        <!-- /ko -->
+    <!-- /ko -->
+</script>

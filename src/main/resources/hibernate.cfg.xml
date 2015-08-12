@@ -26,6 +26,8 @@
         <mapping class="com.lt.clienttracker.diagnosis"/>
         <mapping class="com.lt.clienttracker.ACE"/>
         <mapping class="com.lt.clienttracker.SASSI"/>
+        <mapping class="com.lt.clienttracker.Beck"/>
+        <mapping class="com.lt.clienttracker.discharge"/>
        
 
     </session-factory>

@@ -49,6 +49,21 @@ public class assessmentController {
             SASSI newSASSI=(SASSI)retval;
             newSASSI.setRiskHigh();
         }
+        else if(assessmentName.equals("Beck"))
+        {
+            retval=new Beck();
+            Beck newBeck=(Beck)retval;
+            newBeck.setBSCI_Y(1);
+            newBeck.setBAI_Y(2);
+            newBeck.setBDI_Y(3);
+            newBeck.setBANI_Y(4);
+            newBeck.setBDBI_Y(5);
+        }
+        else if(assessmentName.equals("discharge"))
+        {
+            retval=new discharge();
+            discharge newDischarge=(discharge)retval;
+        }        
         else
         {
             throw new Exception("Unknown Assessment Type");
@@ -174,7 +189,89 @@ public class assessmentController {
         sess.getTransaction().commit();
         return id;
     }        
+
     
+    @RequestMapping("getBeck.do")
+    public Beck getBeck(@RequestParam(value="assessmentID") String assessmentID)
+            throws Exception
+    {
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        Beck retval= (Beck)sess.get(Beck.class, assessmentID);
+        return retval;
+    }
+
+    @RequestMapping("updateBeck.do")
+    public String updateBeck(@RequestParam(value="id") String id,
+                                  @RequestParam(value="year") int year,
+                                  @RequestParam(value="month") int month,
+                                  @RequestParam(value="bsci_Y") int BSCI_Y,
+                                  @RequestParam(value="bai_Y") int BAI_Y,
+                                  @RequestParam(value="bdi_Y") int BDI_Y,
+                                  @RequestParam(value="bani_Y") int BANI_Y,
+                                  @RequestParam(value="bdbi_Y") int BDBI_Y
+                                  )
+    {
+
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        sess.beginTransaction();
+        Beck updatedAssessment= (Beck)sess.get(Beck.class, id);
+        
+        updatedAssessment.setYear(year);
+        updatedAssessment.setMonth(month);
+        
+        // Class specific fields
+        updatedAssessment.setBSCI_Y(BSCI_Y);
+        updatedAssessment.setBAI_Y(BAI_Y);
+        updatedAssessment.setBDI_Y(BDI_Y);
+        updatedAssessment.setBANI_Y(BANI_Y);
+        updatedAssessment.setBDBI_Y(BDBI_Y);
+        
+        sess.save(updatedAssessment);
+        sess.getTransaction().commit();
+        return id;
+    }    
+
+    
+    @RequestMapping("getdischarge.do")
+    public discharge getDischarge(@RequestParam(value="assessmentID") String assessmentID)
+            throws Exception
+    {
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        discharge retval= (discharge)sess.get(discharge.class, assessmentID);
+        return retval;
+    }
+
+    @RequestMapping("updatedischarge.do")
+    public String updateDischarge(@RequestParam(value="id") String id,
+                                  @RequestParam(value="year") int year,
+                                  @RequestParam(value="month") int month
+                                  )
+    {
+
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        sess.beginTransaction();
+        discharge updatedAssessment= (discharge)sess.get(discharge.class, id);
+        
+        updatedAssessment.setYear(year);
+        updatedAssessment.setMonth(month);
+        
+
+        sess.save(updatedAssessment);
+        sess.getTransaction().commit();
+        return id;
+    }
+    
+    
+    
+ /****************************/
     @RequestMapping("delete.do")
     public void deleteAssessment(@RequestParam(value="assessmentID") String assessmentID)
     {

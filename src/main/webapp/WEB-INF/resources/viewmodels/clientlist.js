@@ -161,6 +161,8 @@ var assessmentTypes={};
 assessmentTypes["diagnosis"]= new assessmentOption("diagnosis","diagnosis",["CodeType","Code"]);
 assessmentTypes["ACE"]= new assessmentOption("ACE","ACE",["Score"]);
 assessmentTypes["SASSI"]=new assessmentOption("SASSI","SASSI",["Risk"]);
+assessmentTypes["Beck"]=new assessmentOption("Beck","Beck",["BSCI_Y,BAI_Y,BDI_Y,BANI_Y,BDBI_Y"]);
+assessmentTypes["discharge"]=new assessmentOption("discharge","discharge",[]);
 
 
 assessmentTypesList=[];
