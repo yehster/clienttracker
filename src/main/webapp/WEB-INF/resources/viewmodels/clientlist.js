@@ -122,8 +122,8 @@ function clientSave(data,evt)
 function editClient(data,evt)
 {
     tracker_vm.editInfo.editMode("edit");
-    tracker_vm.editInfo.assessmentEditData(false);
-    tracker_vm.editInfo.assessmentEditType(false);
+    tracker_vm.editInfo.assessmentEditData(null);
+    tracker_vm.editInfo.assessmentEditType(null);
     $.getJSON(client_get,
     {
         id:data.id()
@@ -243,6 +243,8 @@ function deleteAssessment(data)
     if(confirm("Delete entry?\n"+data.year() +"/" +data.month() + ":"+data.DisplayInfo()))
     {
         $.post(assessment_delete,{assessmentID: data.id()},function(result){
+                    tracker_vm.editInfo.assessmentEditData(null);
+                    tracker_vm.editInfo.assessmentEditType(null);
                     $.getJSON(client_get,
                         {
                             id:tracker_vm.editInfo.clientEdit().id

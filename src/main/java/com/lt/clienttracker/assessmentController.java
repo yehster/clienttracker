@@ -34,6 +34,8 @@ public class assessmentController {
             retval=new diagnosis();
             diagnosis newDiagnosis =(diagnosis)retval;
             newDiagnosis.setCodeType("DSM-IV");
+            newDiagnosis.setCode("");
+            newDiagnosis.setDescription("");
         }
         else if(assessmentName.equals("ACE"))
         {

@@ -15,8 +15,8 @@
     <!-- /ko -->
     <!-- ko if: assessmentEditType() -->
     <div data-bind="with: assessmentEditData">
-        <input type="text" data-bind="value: month"></input>
-        <input type="text" data-bind="value: year"></input>
+        <span>Month&nbsp;</span><input size="4" type="text" data-bind="value: month"></input>
+        <span>Year&nbsp;</span><input size="4" type="text" data-bind="value: year"></input>
     </div>
     <div data-bind="template: {name:assessmentEditType(), data: assessmentEditData }"></div>
     <div data-bind="with: assessmentEditData">
@@ -28,24 +28,53 @@
 </script>
 
 <script type="text/html" id="assessmentEditdiagnosis">
-    <!-- ko if: AssessmentName()=="diagnosis" -->
-        <div>Diagnosis</div>
-        <input type="text" data-bind="value:code"></input>
-        <input type="text" data-bind="value:codeType"></input>
-        <input type="text" data-bind="value: description"></input>
+    <!-- ko if: $data -->
+
+        <!-- ko if: AssessmentName()=="diagnosis" -->
+            <div>Diagnosis</div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Code</td>
+                        <td>
+                            <input type="text" data-bind="value:code"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Code Type</td>
+                        <td>
+                            <input type="text" data-bind="value:codeType"></input>
+                        </td>
+                    </tr>  
+                    <tr>
+                        <td>Description</td>
+                        <td>
+                            <input type="text" data-bind="value: description"></input>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        <!-- /ko -->
+    
     <!-- /ko -->
 </script>
 
 <script type="text/html" id="assessmentEditACE">
-    <!-- ko if: AssessmentName()=="ACE" -->
-        <div>ACE</div>
-        <input type="text" data-bind="value: score"></input>
+    <!-- ko if: $data -->
+        <!-- ko if: AssessmentName()=="ACE" -->
+            <div>ACE</div>
+            <span>Score</span>
+            <input size="3" type="text" data-bind="value: score"></input>
+        <!-- /ko -->
     <!-- /ko -->
 </script>
 
 <script type="text/html" id="assessmentEditSASSI">
-    <!-- ko if: AssessmentName()=="SASSI" -->
-        <div>SASSI</div>
-        <select data-bind="options: ['low','medium','high'],value:risk"></select>
+    <!-- ko if: $data -->
+        <!-- ko if: AssessmentName()=="SASSI" -->
+            <div>SASSI</div>
+            <span>Risk</span>
+            <select data-bind="options: ['low','medium','high'],value:risk"></select>
+        <!-- /ko -->
     <!-- /ko -->
 </script>
