@@ -152,3 +152,64 @@
         <!-- /ko -->
     <!-- /ko -->
 </script>
+
+<script type="text/html" id="assessmentEditCAFAS">
+    <!-- ko if: $data -->
+
+        <!-- ko if: AssessmentName()=="CAFAS" -->
+            <div>CAFAS</div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>School/Work Role Performance</td>
+                        <td>
+                            <input type="text" data-bind="value:school_work_rp"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Home Role Performance</td>
+                        <td>
+                            <input type="text" data-bind="value:home_rp"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Community Role Performance</td>
+                        <td>
+                            <input type="text" data-bind="value:community_rp"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Behavior Toward Others</td>
+                        <td>
+                            <input type="text" data-bind="value:behavior_toward_others"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mood/Emotions</td>
+                        <td>
+                            <input type="text" data-bind="value:mood_emotions"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Self Harm Behavior</td>
+                        <td>
+                            <input type="text" data-bind="value:self_harmful_behavior"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Substance Use</td>
+                        <td>
+                            <input type="text" data-bind="value:substance_use"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Thinking</td>
+                        <td>
+                            <input type="text" data-bind="value:thinking"></input>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>    
+        <!-- /ko -->
+    <!-- /ko -->
+</script>

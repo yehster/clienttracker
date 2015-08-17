@@ -171,6 +171,7 @@ assessmentTypes["diagnosis"]= new assessmentOption("diagnosis","diagnosis",["Cod
 assessmentTypes["ACE"]= new assessmentOption("ACE","ACE",["Score"]);
 assessmentTypes["SASSI"]=new assessmentOption("SASSI","SASSI",["Risk"]);
 assessmentTypes["Beck"]=new assessmentOption("Beck","Beck",["BSCI_Y,BAI_Y,BDI_Y,BANI_Y,BDBI_Y"]);
+assessmentTypes["CAFAS"]=new assessmentOption("CAFAS","CAFAS",[]);
 assessmentTypes["employment"]=new assessmentOption("employment","employment",[]);
 assessmentTypes["graduation"]=new assessmentOption("graduation","graduation",[]);
 assessmentTypes["discharge"]=new assessmentOption("discharge","discharge",[]);

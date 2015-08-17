@@ -53,12 +53,25 @@ public class assessmentController {
         {
             retval=new Beck();
             Beck newBeck=(Beck)retval;
-            newBeck.setBSCI_Y(1);
-            newBeck.setBAI_Y(2);
-            newBeck.setBDI_Y(3);
-            newBeck.setBANI_Y(4);
-            newBeck.setBDBI_Y(5);
+            newBeck.setBSCI_Y(0);
+            newBeck.setBAI_Y(0);
+            newBeck.setBDI_Y(0);
+            newBeck.setBANI_Y(0);
+            newBeck.setBDBI_Y(0);
         }
+        else if(assessmentName.equals("CAFAS"))
+        {
+            retval=new CAFAS();
+            CAFAS newCAFAS=(CAFAS)retval;
+            newCAFAS.setschool_work_rp(0);
+            newCAFAS.sethome_rp(0);
+            newCAFAS.setcommunity_rp(0);
+            newCAFAS.setbehavior_toward_others(0);
+            newCAFAS.setmood_emotions(0);
+            newCAFAS.setself_harmful_behavior(0);
+            newCAFAS.setsubstance_use(0);
+            newCAFAS.setthinking(0);
+        }        
         else if(assessmentName.equals("discharge"))
         {
             retval=new discharge();
@@ -251,6 +264,55 @@ public class assessmentController {
         return id;
     }    
 
+    @RequestMapping("getCAFAS.do")
+    public CAFAS getCAFAS(@RequestParam(value="assessmentID") String assessmentID)
+            throws Exception
+    {
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        CAFAS retval= (CAFAS)sess.get(CAFAS.class, assessmentID);
+        return retval;
+    }
+
+    @RequestMapping("updateCAFAS.do")
+    public String updateCAFAS(@RequestParam(value="id") String id,
+                                  @RequestParam(value="year") int year,
+                                  @RequestParam(value="month") int month,
+                                  @RequestParam(value="school_work_rp") int school_work_rp,
+                                  @RequestParam(value="home_rp") int home_rp,
+                                  @RequestParam(value="community_rp") int community_rp,
+                                  @RequestParam(value="behavior_toward_others") int behavior_toward_others,
+                                  @RequestParam(value="mood_emotions") int mood_emotions,
+                                  @RequestParam(value="self_harmful_behavior") int self_harmful_behavior,
+                                  @RequestParam(value="substance_use") int substance_use,
+                                  @RequestParam(value="thinking") int thinking
+                                  )
+    {
+
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        sess.beginTransaction();
+        CAFAS updatedAssessment= (CAFAS)sess.get(CAFAS.class, id);
+        
+        updatedAssessment.setYear(year);
+        updatedAssessment.setMonth(month);
+        
+        // Class specific fields
+        updatedAssessment.setschool_work_rp(school_work_rp);
+        updatedAssessment.sethome_rp(home_rp);
+        updatedAssessment.setcommunity_rp(community_rp);
+        updatedAssessment.setbehavior_toward_others(behavior_toward_others);
+        updatedAssessment.setmood_emotions(mood_emotions);
+        updatedAssessment.setself_harmful_behavior(self_harmful_behavior);
+        updatedAssessment.setsubstance_use(substance_use);
+        updatedAssessment.setthinking(thinking);
+        
+        sess.save(updatedAssessment);
+        sess.getTransaction().commit();
+        return id;
+    }    
     
     @RequestMapping("getdischarge.do")
     public discharge getDischarge(@RequestParam(value="assessmentID") String assessmentID)
