@@ -4,28 +4,26 @@
  * and open the template in the editor.
  */
 package com.lt.clienttracker;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
 import javax.persistence.Column;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 /**
  *
  * @author yehster
  */
 @Entity  
-@Table(name="cafas")  
-@PrimaryKeyJoinColumn(name="id")  
-public class CAFAS  extends assessment implements java.io.Serializable {
+@Table(name="employment")  
+@PrimaryKeyJoinColumn(name="id") 
+public class employment extends assessment implements java.io.Serializable {
+
     
     @Override
     public String AssessmentName()
     {
-        return "CAFAS";
+        return "employment";
     }
     
     @Override
@@ -33,5 +31,5 @@ public class CAFAS  extends assessment implements java.io.Serializable {
     {
         return "";
         
-    }         
+    }     
 }

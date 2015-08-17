@@ -14,6 +14,9 @@
                 <th>Years</th>
                 <th>Months</th>
                 <th>LGBTQ</th>
+                <th>Mommy and Me</th>
+                <th>Trauma</th>
+                <th>Medical</th>
                 <th>Admission</th>
             </tr>
         </thead>
@@ -23,6 +26,9 @@
                 <td data-bind="text: admAgeYears"></td>
                 <td data-bind="text: admAgeMonths"></td>
                 <td data-bind="text: lgbtq"></td>
+                <td data-bind="text: mommy_and_me"></td>
+                <td data-bind="text: trauma"></td>
+                <td data-bind="text: medical"></td>
                 <td ><span data-bind="text: admissionMonth"></span>/<span data-bind="text: admissionYear"></span></td>
             </tr>
         </tbody>

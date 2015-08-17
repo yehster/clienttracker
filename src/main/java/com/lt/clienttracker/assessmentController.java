@@ -63,13 +63,29 @@ public class assessmentController {
         {
             retval=new discharge();
             discharge newDischarge=(discharge)retval;
-        }        
+            newDischarge.setPlacement("unknown");
+        }
+        else if(assessmentName.equals("CAFAS"))
+        {
+            retval=new CAFAS();
+            CAFAS newCAFAS=(CAFAS)retval;
+        }                    
+        else if(assessmentName.equals("employment"))
+        {
+            retval=new employment();
+            employment newDischarge=(employment)retval;
+        }            
+        else if(assessmentName.equals("graduation"))
+        {
+            retval=new graduation();
+            graduation newGraduation=(graduation)retval;
+        }
         else
         {
             throw new Exception("Unknown Assessment Type");
         }
         retval.setYear(Calendar.getInstance().get(Calendar.YEAR));
-        retval.setMonth(Calendar.getInstance().get(Calendar.MONTH));
+        retval.setMonth(Calendar.getInstance().get(Calendar.MONTH)+1); // Turn zero based java month to standard month
         retval.setClient(curClient);
         sess.save(retval);
         sess.getTransaction().commit();
@@ -269,8 +285,73 @@ public class assessmentController {
         return id;
     }
     
-    
-    
+    @RequestMapping("getemployment.do")
+    public employment getEmployment(@RequestParam(value="assessmentID") String assessmentID)
+            throws Exception
+    {
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        employment retval= (employment)sess.get(employment.class, assessmentID);
+        return retval;
+    }
+
+    @RequestMapping("updateemployment.do")
+    public String updateemployment(@RequestParam(value="id") String id,
+                                  @RequestParam(value="year") int year,
+                                  @RequestParam(value="month") int month
+                                  )
+    {
+
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        sess.beginTransaction();
+        employment updatedAssessment= (employment)sess.get(employment.class, id);
+        
+        updatedAssessment.setYear(year);
+        updatedAssessment.setMonth(month);
+        
+        // Class specific fields
+        
+        sess.save(updatedAssessment);
+        sess.getTransaction().commit();
+        return id;
+    }        
+
+    @RequestMapping("getgraduation.do")
+    public graduation getGraduation(@RequestParam(value="assessmentID") String assessmentID)
+            throws Exception
+    {
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        graduation retval= (graduation)sess.get(graduation.class, assessmentID);
+        return retval;
+    }
+
+    @RequestMapping("updategraduation.do")
+    public String updategraduation(@RequestParam(value="id") String id,
+                                  @RequestParam(value="year") int year,
+                                  @RequestParam(value="month") int month
+                                  )
+    {
+
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        sess.beginTransaction();
+        graduation updatedAssessment= (graduation)sess.get(graduation.class, id);
+        
+        updatedAssessment.setYear(year);
+        updatedAssessment.setMonth(month);
+        
+        // Class specific fields
+        
+        sess.save(updatedAssessment);
+        sess.getTransaction().commit();
+        return id;
+    }         
  /****************************/
     @RequestMapping("delete.do")
     public void deleteAssessment(@RequestParam(value="assessmentID") String assessmentID)

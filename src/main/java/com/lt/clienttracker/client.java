@@ -94,6 +94,42 @@ public class client implements java.io.Serializable {
         this.LGBTQ=LGBTQ;
     }
     
+    protected String mommy_and_me;
+
+    @Column(name="mommy_and_me")
+    public String getmommy_and_me()
+    {
+        return this.mommy_and_me;
+    }
+    public void setmommy_and_me(String mommy_and_me)
+    {
+        this.mommy_and_me=mommy_and_me;
+    }
+
+    protected String trauma;
+
+    @Column(name="trauma")
+    public String gettrauma()
+    {
+        return this.trauma;
+    }
+    public void settrauma(String trauma)
+    {
+        this.trauma=trauma;
+    }
+    
+    protected String medical;
+
+    @Column(name="medical")
+    public String getmedical()
+    {
+        return this.medical;
+    }
+    public void setmedical(String medical)
+    {
+        this.medical=medical;
+    }    
+    
     @JsonManagedReference
     Set<assessment> assessments;
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)

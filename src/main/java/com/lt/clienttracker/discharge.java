@@ -5,6 +5,7 @@
  */
 package com.lt.clienttracker;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -21,6 +22,19 @@ public class discharge extends assessment implements java.io.Serializable {
     they leave us and go 1. to a higher level of care, called RTC (rehab, detention, lockdown bootcamp, psych hospital) 2. to a similar level of care (other group home or the like) 3. to a lower level of care (transitional or independent living 4. back with their families
     */
     
+    protected String placement;
+
+    @Column(name="placement")
+    public String getPlacement()
+    {
+        return this.placement;
+    }
+    
+    public void setPlacement(String placement)
+    {
+        this.placement=placement;
+    }
+    
     @Override
     public String AssessmentName()
     {
@@ -30,7 +44,7 @@ public class discharge extends assessment implements java.io.Serializable {
     @Override
     public String DisplayInfo()
     {
-        return "";
+        return this.placement;
         
     }     
 }

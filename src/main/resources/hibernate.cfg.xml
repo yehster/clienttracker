@@ -28,7 +28,9 @@
         <mapping class="com.lt.clienttracker.SASSI"/>
         <mapping class="com.lt.clienttracker.Beck"/>
         <mapping class="com.lt.clienttracker.discharge"/>
-       
+        <mapping class="com.lt.clienttracker.CAFAS"/>
+        <mapping class="com.lt.clienttracker.employment"/>       
+        <mapping class="com.lt.clienttracker.graduation"/>       
 
     </session-factory>
     

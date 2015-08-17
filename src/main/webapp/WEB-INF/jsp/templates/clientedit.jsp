@@ -24,8 +24,28 @@
             </tr>
             <tr>
                 <td>LGBTQ</td>
-                <td><input type="text" data-bind="value:clientEdit().lgbtq"/></td>
+                <td>
+                        <select data-bind="options: ['no','yes'],value:clientEdit().lgbtq"></select>
+                </td>
             </tr>
+            <tr>
+                <td>Mommy and Me</td>
+                <td>
+                        <select data-bind="options: ['no','yes'],value:clientEdit().mommy_and_me"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>Trauma</td>
+                <td>
+                        <select data-bind="options: ['no','yes'],value:clientEdit().trauma"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>Medical</td>
+                <td>
+                        <select data-bind="options: ['no','yes'],value:clientEdit().medical"></select>
+                </td>
+            </tr>            
             <tr>
                 <td>Admission Year</td>
                 <td><input type="text" data-bind="value:clientEdit().admissionYear"/></td>

@@ -37,7 +37,11 @@ public class clientsController {
                             @RequestParam(value="agey") int agey,
                             @RequestParam(value="admy") int admy,
                             @RequestParam(value="admm") int admm,
-                            @RequestParam(value="lgbtq") String lgbtq
+                            @RequestParam(value="lgbtq") String lgbtq,
+                            @RequestParam(value="mommy_and_me") String mommy_and_me,
+                            @RequestParam(value="trauma") String trauma,
+                            @RequestParam(value="medical") String medical
+                            
                             )
     {
         
@@ -50,6 +54,9 @@ public class clientsController {
         retval.setAdmissionYear(admy);
         retval.setAdmissionMonth(admm);
         retval.setLGBTQ(lgbtq);
+        retval.setmommy_and_me(mommy_and_me);
+        retval.settrauma(trauma);
+        retval.setmedical(medical);
         sess.save(retval);
         sess.getTransaction().commit();
         return retval;
@@ -71,7 +78,10 @@ public class clientsController {
                             @RequestParam(value="agey") int agey,
                             @RequestParam(value="admy") int admy,
                             @RequestParam(value="admm") int admm,
-                            @RequestParam(value="lgbtq") String lgbtq
+                            @RequestParam(value="lgbtq") String lgbtq,
+                            @RequestParam(value="mommy_and_me") String mommy_and_me,
+                            @RequestParam(value="trauma") String trauma,
+                            @RequestParam(value="medical") String medical
                             )
     {
         
@@ -83,6 +93,9 @@ public class clientsController {
         retval.setAdmissionYear(admy);
         retval.setAdmissionMonth(admm);
         retval.setLGBTQ(lgbtq);
+        retval.setmommy_and_me(mommy_and_me);
+        retval.settrauma(trauma);
+        retval.setmedical(medical);
         sess.save(retval);
         sess.getTransaction().commit();
         return retval;

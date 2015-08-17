@@ -127,8 +127,28 @@
 <script type="text/html" id="assessmentEditdischarge">
     <!-- ko if: $data -->
 
-        <!-- ko if: AssessmentName()=="Beck" -->
+        <!-- ko if: AssessmentName()=="discharge" -->
             <div>Discharge</div>
+            <span>Placement</span>
+            <select data-bind="options: ['family','lower','same','higher','unknown'],value:placement"></select>
+        <!-- /ko -->
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="assessmentEditemployment">
+    <!-- ko if: $data -->
+
+        <!-- ko if: AssessmentName()=="employment" -->
+            <div>Employment</div>
+        <!-- /ko -->
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="assessmentEditgraduation">
+    <!-- ko if: $data -->
+
+        <!-- ko if: AssessmentName()=="graduation" -->
+            <div>Graduation</div>
         <!-- /ko -->
     <!-- /ko -->
 </script>

@@ -42,6 +42,9 @@ function client_info(data)
     this.admissionYear=ko.observable(data.admissionYear);
     this.admissionMonth=ko.observable(data.admissionMonth);
     this.lgbtq=ko.observable(data.lgbtq);
+    this.mommy_and_me=ko.observable(data.mommy_and_me);
+    this.trauma=ko.observable(data.trauma);
+    this.medical=ko.observable(data.medical);
     data.assessments.sort(compare_assessment_order);
     this.assessments=ko.observableArray(data.assessments);
     return this;
@@ -75,7 +78,10 @@ function new_client(data,evt)
         admAgeYears:ko.observable(0),
         admissionYear:ko.observable(2015),
         admissionMonth:ko.observable(7),
-        lgbtq:ko.observable("")
+        lgbtq:ko.observable(""),
+        mommy_and_me:ko.observable(""),
+        trauma:ko.observable(""),
+        medical:ko.observable("")
     };
     tracker_vm.editInfo.clientEdit(new_client);
 }
@@ -94,6 +100,9 @@ function clientSave(data,evt)
                 admy: tracker_vm.editInfo.clientEdit().admissionYear(),
                 admm: tracker_vm.editInfo.clientEdit().admissionMonth(),
                 lgbtq: tracker_vm.editInfo.clientEdit().lgbtq(),
+                mommy_and_me: tracker_vm.editInfo.clientEdit().mommy_and_me(),
+                trauma: tracker_vm.editInfo.clientEdit().trauma(),
+                medical: tracker_vm.editInfo.clientEdit().medical(),
 
             }
     if(data.editMode()==="new")
@@ -162,7 +171,10 @@ assessmentTypes["diagnosis"]= new assessmentOption("diagnosis","diagnosis",["Cod
 assessmentTypes["ACE"]= new assessmentOption("ACE","ACE",["Score"]);
 assessmentTypes["SASSI"]=new assessmentOption("SASSI","SASSI",["Risk"]);
 assessmentTypes["Beck"]=new assessmentOption("Beck","Beck",["BSCI_Y,BAI_Y,BDI_Y,BANI_Y,BDBI_Y"]);
+assessmentTypes["employment"]=new assessmentOption("employment","employment",[]);
+assessmentTypes["graduation"]=new assessmentOption("graduation","graduation",[]);
 assessmentTypes["discharge"]=new assessmentOption("discharge","discharge",[]);
+
 
 
 assessmentTypesList=[];
