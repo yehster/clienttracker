@@ -328,7 +328,8 @@ public class assessmentController {
     @RequestMapping("updatedischarge.do")
     public String updateDischarge(@RequestParam(value="id") String id,
                                   @RequestParam(value="year") int year,
-                                  @RequestParam(value="month") int month
+                                  @RequestParam(value="month") int month,
+                                  @RequestParam(value="placement") String placement
                                   )
     {
 
@@ -341,6 +342,7 @@ public class assessmentController {
         updatedAssessment.setYear(year);
         updatedAssessment.setMonth(month);
         
+        updatedAssessment.setPlacement(placement);
 
         sess.save(updatedAssessment);
         sess.getTransaction().commit();
