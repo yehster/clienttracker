@@ -72,12 +72,13 @@ function retrieve_client_list()
 function new_client(data,evt)
 {
     tracker_vm.editInfo.editMode("new");
+    var now = new Date();
     var new_client = {
         id:ko.observable(""),
         admAgeMonths:ko.observable(0),
         admAgeYears:ko.observable(0),
-        admissionYear:ko.observable(2015),
-        admissionMonth:ko.observable(7),
+        admissionYear:ko.observable(now.getFullYear()),
+        admissionMonth:ko.observable(now.getMonth()+1),
         lgbtq:ko.observable(""),
         mommy_and_me:ko.observable(""),
         trauma:ko.observable(""),
