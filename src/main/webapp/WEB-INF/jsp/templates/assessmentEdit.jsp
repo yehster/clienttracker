@@ -9,7 +9,7 @@
     <!-- ko if: clientEdit() -->
         <div>Add Assessment:</div>
         <div data-bind="foreach: assessmentOptions">
-            <button data-bind="text:name, click: newAssessment"></button>
+            <button data-bind="text:description, click: newAssessment"></button>
         </div>
         
     <!-- /ko -->
@@ -210,6 +210,17 @@
                     </tr>
                 </tbody>
             </table>    
+        <!-- /ko -->
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="assessmentEditoutside_referral">
+    <!-- ko if: $data -->
+
+        <!-- ko if: AssessmentName()=="outside_referral" -->
+            <div>Outside Referral</div>
+            <span>Location</span>
+            <select data-bind="options: ['Princeton House','Family Guidance Center','Russ Healy','Other'],value:location"></select>
         <!-- /ko -->
     <!-- /ko -->
 </script>

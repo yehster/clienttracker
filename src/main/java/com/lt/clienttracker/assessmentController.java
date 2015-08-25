@@ -93,6 +93,12 @@ public class assessmentController {
             retval=new graduation();
             graduation newGraduation=(graduation)retval;
         }
+        else if (assessmentName.equals("outside_referral"))
+        {
+            retval=new outside_referral();
+            outside_referral newoutside_referral=(outside_referral)retval;
+            newoutside_referral.setLocation("Other");
+        }
         else
         {
             throw new Exception("Unknown Assessment Type");
@@ -415,7 +421,43 @@ public class assessmentController {
         sess.save(updatedAssessment);
         sess.getTransaction().commit();
         return id;
-    }         
+    }
+    
+    @RequestMapping("getoutside_referral.do")
+    public outside_referral getoutside_referral(@RequestParam(value="assessmentID") String assessmentID)
+            throws Exception
+    {
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        outside_referral retval= (outside_referral)sess.get(outside_referral.class, assessmentID);
+        return retval;
+    }
+
+    @RequestMapping("updateoutside_referral.do")
+    public String updateoutside_referral(@RequestParam(value="id") String id,
+                                  @RequestParam(value="year") int year,
+                                  @RequestParam(value="month") int month,
+                                  @RequestParam(value="location") String location
+                                  )
+    {
+
+        SessionFactory sessFact= HibernateManager.getSessionFactory();
+        Session sess=sessFact.openSession();
+
+        sess.beginTransaction();
+        outside_referral updatedAssessment= (outside_referral)sess.get(outside_referral.class, id);
+        
+        updatedAssessment.setYear(year);
+        updatedAssessment.setMonth(month);
+        
+        // Class specific fields
+        updatedAssessment.setLocation(location);
+        
+        sess.save(updatedAssessment);
+        sess.getTransaction().commit();
+        return id;
+    }       
  /****************************/
     @RequestMapping("delete.do")
     public void deleteAssessment(@RequestParam(value="assessmentID") String assessmentID)

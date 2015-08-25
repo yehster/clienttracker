@@ -176,7 +176,7 @@ assessmentTypes["CAFAS"]=new assessmentOption("CAFAS","CAFAS",[]);
 assessmentTypes["employment"]=new assessmentOption("employment","employment",[]);
 assessmentTypes["graduation"]=new assessmentOption("graduation","graduation",[]);
 assessmentTypes["discharge"]=new assessmentOption("discharge","discharge",[]);
-
+assessmentTypes["outside_referral"]=new assessmentOption("outside_referral","Outside Referral",[]);
 
 
 assessmentTypesList=[];

@@ -31,6 +31,7 @@
         <mapping class="com.lt.clienttracker.CAFAS"/>
         <mapping class="com.lt.clienttracker.employment"/>       
         <mapping class="com.lt.clienttracker.graduation"/>       
+        <mapping class="com.lt.clienttracker.outside_referral"/>       
 
     </session-factory>
     
